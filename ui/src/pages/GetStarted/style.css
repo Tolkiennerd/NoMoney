@@ -1,0 +1,141 @@
+.get-started {
+	z-index: 10;
+	background-color: var(--bg);
+	height: 100vh;
+	min-width: 100vw;
+	align-content: center;
+	text-align: center;
+	margin-top: -4rem;
+}
+
+.get-started div {
+	margin: auto;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1rem;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: var(--light-red);
+}
+
+#pond {
+	white-space: nowrap;
+	overflow: hidden;
+	animation: type 4s steps(45, end);
+	width: 28em;
+}
+
+@keyframes type {
+	from { width: 0; }
+}
+
+#corner-pond {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: none;
+}
+
+#corner-pond > span:first-child {
+	cursor: pointer;
+}
+
+#drowning-child {
+	display: none;
+	margin-left: .5rem;
+}
+
+.question {
+	display: none;
+}
+
+.question > div {
+	margin-top: 1rem;
+}
+
+.question > div > span {
+	cursor: pointer;
+	width: fit-content;
+}
+
+.question > div > div {
+	display: inline;
+	margin: 0 1rem;
+}
+
+.question > div > span:nth-child(2) {
+	margin-left: 1rem;
+}
+
+.question > div > span:hover {
+	color: var(--light-red);
+}
+
+.question > span {
+	color: var(--light-red);
+	font-size: 1.25rem;
+}
+
+.question > input {
+	text-align: left;
+	font-weight: bold;
+	font-size: 1.25rem;
+	width: 5rem;
+	border: none;
+	box-shadow: 0 5px 6px -4px var(--light-red);
+	background-color: #0000;
+	color: var(--light-red);
+}
+
+.question > input:focus {
+	outline: none;
+}
+
+.how-much {
+	margin-right: .5rem;
+}
+
+@media (max-width: 420px) {
+	#corner-pond {
+		font-size: .75rem;
+	}
+}
+
+@media (max-width: 639px) {
+	.question {
+		max-width: 90vw;
+	}
+
+	#pond {
+		width: 15rem;
+		animation: unset;
+	}
+
+	#pond > span {
+		white-space: nowrap;
+		overflow: hidden;
+		margin: auto;
+	}
+
+	#pond > span:nth-child(1) {
+		display: block;
+		animation: type 2s steps(24, end) 0s forwards;
+	}
+
+	#pond > span:nth-child(2) {
+		display: block;
+		animation: type 2s steps(24, end) 2s forwards;
+		width: 0;
+	}
+
+	@keyframes type {
+		from { width: 0; }
+		to { width: 15rem; }
+	}
+}

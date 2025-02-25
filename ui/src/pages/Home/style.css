@@ -1,0 +1,105 @@
+.home {
+	max-width: 1280px;
+	margin: auto;
+	margin-top: 1rem;
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+section {
+	border: solid 1px white;
+	border-radius: 10px;
+	padding: 0 1rem 1rem 1rem;
+	height: fit-content;
+}
+
+.expense {
+	text-align: left;
+	display: flex;
+	/* box-shadow: 0 4px 3px -3px #537; */
+	margin-bottom: .2rem;
+	line-height: 2rem;
+}
+
+.expense:hover {
+	background-color: #4355;
+}
+
+.expense.salary:hover {
+	background-color: var(--background-color);
+}
+
+.expense div:nth-child(3) {
+	display: flex;
+	width: 18rem;
+}
+
+.salary div:nth-child(3) {
+	margin-top: 1.25rem;
+}
+
+.expense div:nth-child(3) span:nth-child(1) {
+	width: 50rem;
+	text-align: right;
+}
+
+.expense div:nth-child(3) span:nth-child(2) {
+	width: 13rem;
+	text-align: center;
+}
+
+.expense div:nth-child(3) span:nth-child(3) {
+	width: 20rem;
+	text-align: left;
+}
+
+.expense input {
+	border: none;
+	outline: none;
+	background: none;
+	width: 3rem;
+	font-size: 1rem;
+	color: var(--light-red);
+	font-weight: 600;
+	text-align: right;
+	box-shadow: 0 5px 6px -4px var(--light-red);
+}
+
+.expense.salary input {
+	width: 4rem;
+}
+
+.savings {
+	color: var(--light-red);
+	text-align: right;
+	width: max-content;
+}
+
+section h1 {
+	margin: .5rem 0;
+}
+
+@media (max-width: 639px) {
+	h1 {
+		font-size: 1.25rem;
+	}
+
+	.expense {
+		display: block;
+		outline: 1px solid #444;
+		border-radius: 10px;
+		margin-bottom: .5rem;
+		padding: .5rem;
+		box-shadow: 3px 3px 7px #435;
+	}
+
+	.expense div:nth-child(3) {
+		width: fit-content;
+		gap: 10px;
+	}
+	
+	.expense div:nth-child(3) span {
+		width: fit-content !important;
+	}
+}
