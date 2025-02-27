@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'preact/hooks';
-import { HowMuchQuestion, Question } from './Question';
+import { useContext, useEffect, useState } from 'preact/hooks';
+import { Question } from './Question';
 import { focusChildInput, setElementStyle } from '../../scripts/elements';
 import './style.css'
 import { QuestionIndexContext } from '../../contexts/QuestionIndex';
 import { useLocation } from 'preact-iso';
+import { HowMuchQuestion } from './HowMuchQuestion';
+import { ExpenseQuestion } from './ExpenseQuestion';
+import { SalaryContext } from '../../contexts/Salary';
+import { TaxesQuestion } from './TaxesQuestion';
 
 export function GetStarted() {
 	const [questionIndex, setQuestionIndex] = useState(1);
+	const { salary, setSalary } = useContext(SalaryContext);
 	const location = useLocation();
 	useEffect(() => {
 		setTimeout(clearPondMessage, 5000);
@@ -40,7 +45,8 @@ export function GetStarted() {
 					question="What's your annual salary?"
 					back=""
 					next="housing"
-					frequency="year"
+					value={salary}
+					setAmount={setSalary}
 				></Question>
 				<HowMuchQuestion 
 					id="housing"
@@ -90,13 +96,23 @@ export function GetStarted() {
 					next="extra"
 					frequency="month"
 				></HowMuchQuestion>
-				<Question 
+				<ExpenseQuestion 
 					id="extra"
-					question="How much do you want to have available for extra spending each year?"
+					question="How much do you want to have available for extra spending"
 					back="technology"
-					next=""
+					next="status"
 					frequency="year"
-				></Question>
+				></ExpenseQuestion>
+				<TaxesQuestion 
+					id="status"
+					back="extra"
+					next="state"
+				></TaxesQuestion>
+				<TaxesQuestion 
+					id="state"
+					back="status"
+					next=""
+				></TaxesQuestion>
 				<div id="corner-pond">
 					<span onClick={onCornerPondClick}>💧</span>
 					<span id="drowning-child">

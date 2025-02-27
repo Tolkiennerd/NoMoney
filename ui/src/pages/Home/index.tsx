@@ -3,12 +3,13 @@ import { useContext } from 'preact/hooks';
 import { ExpenseEntry } from './ExpenseEntry';
 import { ExpensesContext } from '../../contexts/Expense';
 import { SalaryContext } from '../../contexts/Salary';
-import { calculateSavings } from '../../scripts/math';
+import { calculateSavings, estimateTaxes } from '../../scripts/math';
+import { TaxesContext } from '../../contexts/Taxes';
 
 export function Home() {
-
 	const { expenses } = useContext(ExpensesContext);
 	const { salary, setSalary } = useContext(SalaryContext);
+	const { taxes, setTaxes } = useContext(TaxesContext);
 
 	return (
 		<div class="home">
@@ -39,12 +40,25 @@ export function Home() {
 				)}
 				<div class="expense salary">
 					<div>
+						<h1>Taxes</h1>
+					</div>
+					<div style={{flex: 1}}></div>
+					<div>
+						<span class="dinero">
+							$ {estimateTaxes(salary, taxes)}
+						</span>
+						<span>per</span>
+						<span>year</span>
+					</div>
+				</div>
+				<div class="expense salary">
+					<div>
 						<h1>Savings</h1>
 					</div>
 					<div style={{flex: 1}}></div>
 					<div>
 						<span class="dinero">
-							$ {calculateSavings(salary, expenses)}
+							$ {calculateSavings(salary, expenses, taxes)}
 						</span>
 						<span>per</span>
 						<span>year</span>

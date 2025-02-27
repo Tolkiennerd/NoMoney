@@ -69,11 +69,11 @@
 	margin: 0 1rem;
 }
 
-.question > div > span:nth-child(2) {
+.question > div.pagination > span:nth-child(2) {
 	margin-left: 1rem;
 }
 
-.question > div > span:hover {
+.question > div.pagination > span:hover {
 	color: var(--light-red);
 }
 
@@ -82,19 +82,83 @@
 	font-size: 1.25rem;
 }
 
-.question > input {
+.question > .inputControl {
 	text-align: left;
 	font-weight: bold;
 	font-size: 1.25rem;
-	width: 5rem;
 	border: none;
-	box-shadow: 0 5px 6px -4px var(--light-red);
 	background-color: #0000;
+}
+
+.question > input.inputControl {
+	width: 5rem;
+	color: var(--light-red);
+	box-shadow: 0 5px 6px -4px var(--light-red);
+}
+
+.question > div.inputControl {
+	color: white;
+}
+
+.question > div.inputControl.status {
+	width: 6rem;
+	box-shadow: 0 5px 6px -4px var(--light-red);
+}
+
+.question > div.inputControl.state {
+	width: 10rem;
+	color: white;
+}
+
+.question > .inputControl:focus {
+	outline: none;
+}
+
+.question > div > label.MuiFormLabel-root {
+	margin-left: 1rem;
+}
+
+.question > .inputControl > span.MuiSwitch-root {
+	width: 3rem !important;
+}
+
+.question > div.MuiStack-root > p {
+	margin: 0;
+}
+
+.question > div.MuiStack-root > span.MuiSwitch-root {
+	margin: 0;
+}
+
+.question > div > div > svg.MuiSvgIcon-root {
+	color: var(--dark-red);
+}
+
+.question > div:hover > div > svg.MuiSvgIcon-root {
 	color: var(--light-red);
 }
 
-.question > input:focus {
-	outline: none;
+.question > div > div > fieldset.MuiOutlinedInput-notchedOutline {
+	border-color: var(--dark-red);
+}
+
+.question > div:hover > div > fieldset.MuiOutlinedInput-notchedOutline {
+	border-color: var(--light-red);
+}
+
+.question > div > label.MuiFormLabel-root {
+	color: white;
+}
+
+.question > div > div > div.MuiSelect-select {
+	color: white;
+}
+
+div.MuiPopover-root.MuiMenu-root > div.MuiPaper-root {
+	background-color: rgb(40, 40, 40);
+	color: white;
+	top: 55vh;
+	height: 40vh;
 }
 
 .how-much {

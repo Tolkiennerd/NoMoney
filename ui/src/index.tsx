@@ -7,10 +7,12 @@ import { GetStarted } from './pages/GetStarted';
 import { useState } from 'preact/hooks';
 import { SalaryContext } from './contexts/Salary';
 import { ExpensesContext } from './contexts/Expense';
+import { TaxesContext } from './contexts/Taxes';
 
 export function App() {
 	const [salary, setSalary] = useState(null);
 	const [expenses, setExpenses] = useState([]);
+	const [taxes, setTaxes] = useState(null);
 
 	return (
 		<LocationProvider>
@@ -22,11 +24,15 @@ export function App() {
 				<ExpensesContext.Provider 
 					value={{expenses: expenses, setExpenses: setExpenses}}
 				>
+				<TaxesContext.Provider
+					value={{taxes: taxes, setTaxes: setTaxes}}
+				>
 					<Router>
 						<Route path="/" component={Home} />
 						<Route path="/get-started" component={GetStarted} />
 						<Route default component={NotFound} />
 					</Router>
+				</TaxesContext.Provider>
 				</ExpensesContext.Provider>
 				</SalaryContext.Provider>
 			</main>
