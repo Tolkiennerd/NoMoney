@@ -8,10 +8,17 @@ import { useState } from 'preact/hooks';
 import { SalaryContext } from './contexts/Salary';
 import { ExpensesContext } from './contexts/Expense';
 import { TaxesContext } from './contexts/Taxes';
+import { Deduction, DeductionsContext } from './contexts/Deductions';
 
 export function App() {
 	const [salary, setSalary] = useState(null);
 	const [expenses, setExpenses] = useState([]);
+	const insurance: Deduction = {
+		name: 'Insurance',
+		amount: 100,
+		frequency: 'two weeks'
+	};
+	const [deductions, setDeductions] = useState([insurance]);
 	const [taxes, setTaxes] = useState(null);
 
 	return (
@@ -24,6 +31,9 @@ export function App() {
 				<ExpensesContext.Provider 
 					value={{expenses: expenses, setExpenses: setExpenses}}
 				>
+				<DeductionsContext.Provider 
+					value={{deductions: deductions, setDeductions: setDeductions}}
+				>
 				<TaxesContext.Provider
 					value={{taxes: taxes, setTaxes: setTaxes}}
 				>
@@ -33,6 +43,7 @@ export function App() {
 						<Route default component={NotFound} />
 					</Router>
 				</TaxesContext.Provider>
+				</DeductionsContext.Provider>
 				</ExpensesContext.Provider>
 				</SalaryContext.Provider>
 			</main>

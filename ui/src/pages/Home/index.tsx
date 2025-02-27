@@ -5,11 +5,14 @@ import { ExpensesContext } from '../../contexts/Expense';
 import { SalaryContext } from '../../contexts/Salary';
 import { calculateSavings, estimateTaxes } from '../../scripts/math';
 import { TaxesContext } from '../../contexts/Taxes';
+import { DeductionsContext } from '../../contexts/Deductions';
+import { DeductionEntry } from './DeductionEntry';
 
 export function Home() {
 	const { expenses } = useContext(ExpensesContext);
 	const { salary, setSalary } = useContext(SalaryContext);
-	const { taxes, setTaxes } = useContext(TaxesContext);
+	const { taxes } = useContext(TaxesContext);
+	const { deductions } = useContext(DeductionsContext);
 
 	return (
 		<div class="home">
@@ -38,6 +41,10 @@ export function Home() {
 				{expenses.map((expense) => 
 					<ExpenseEntry expense={expense}></ExpenseEntry>
 				)}
+				<h1>Deductions</h1>
+				{deductions.map((deduction) => 
+					<DeductionEntry deduction={deduction}></DeductionEntry>
+				)}
 				<div class="expense salary">
 					<div>
 						<h1>Taxes</h1>
@@ -58,7 +65,7 @@ export function Home() {
 					<div style={{flex: 1}}></div>
 					<div>
 						<span class="dinero">
-							$ {calculateSavings(salary, expenses, taxes)}
+							$ {calculateSavings(salary, expenses, deductions, taxes)}
 						</span>
 						<span>per</span>
 						<span>year</span>

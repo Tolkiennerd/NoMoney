@@ -1,15 +1,16 @@
+import { Deduction } from "../contexts/Deductions";
 import { Expense } from "../contexts/Expense";
 import { defaultFederalTaxBrackets, defaultStateTaxRates, FilingStatus, Taxes } from "../contexts/Taxes";
 
-export const calculateSavings = (
-    salary: number, 
-    expenses: Expense[],
-    taxes: Taxes): number => {
+export const getTotalExpenses = (expenses: Expense[]): number => {
     let totalExpenses = 0;
     expenses.forEach(expense => {
         let multiplier = 1;
         if (expense.frequency === 'month') {
             multiplier = 12;
+        }
+        else if (expense.frequency === 'two weeks') {
+            multiplier = 26;
         }
         else if (expense.frequency === 'week') {
             multiplier = 52;
@@ -20,8 +21,40 @@ export const calculateSavings = (
         const yearlyAmount = expense.amount * multiplier;
         totalExpenses += yearlyAmount;
     });
+    return totalExpenses;
+}
+
+export const getTotalDeductions = (deductions: Deduction[]): number => {
+    let totalDeductions = 0;
+    deductions.forEach(deduction => {
+        let multiplier = 1;
+        if (deduction.frequency === 'month') {
+            multiplier = 12;
+        }
+        else if (deduction.frequency === 'two weeks') {
+            multiplier = 26;
+        }
+        else if (deduction.frequency === 'week') {
+            multiplier = 52;
+        }
+        else if (deduction.frequency === 'day') {
+            multiplier = 365;
+        }
+        const yearlyAmount = deduction.amount * multiplier;
+        totalDeductions += yearlyAmount;
+    });
+    return totalDeductions;
+}
+
+export const calculateSavings = (
+    salary: number, 
+    expenses: Expense[],
+    deductions: Deduction[],
+    taxes: Taxes): number => {
+    const totalExpenses = getTotalExpenses(expenses);
+    const totalDeductions = getTotalDeductions(deductions);
     const totalTaxes = estimateTaxes(salary, taxes);
-    return salary - totalExpenses - totalTaxes;
+    return salary - totalExpenses - totalDeductions - totalTaxes;
 };
 
 export const estimateTaxes = (salary: number, taxes: Taxes): number => {

@@ -19,6 +19,11 @@ export interface ExpenseQuestionProps extends BaseQuestionProps {
     frequency: string;
 }
 
+export interface DeductionQuestionProps extends BaseQuestionProps {
+    question: string | JSX.Element;
+    frequency: string;
+}
+
 export interface HowMuchQuestionProps extends BaseQuestionProps {
     frequency: string;
 }

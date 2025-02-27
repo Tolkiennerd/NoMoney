@@ -42,12 +42,12 @@ export function Question(props: QuestionProps) {
 		}
 
 		if (!props.next) {
-			if (taxes.state) {
+			if (taxes.state !== undefined) {
 				location.route('/');
 			}
 			return;
 		}
-		
+
         setElementStyle(props.id, 'display', 'none');
 		if (!direction) {
 			return;
@@ -76,7 +76,7 @@ export function Question(props: QuestionProps) {
 			}
 			<div class="pagination">
 				{props.back ? <span onClick={onBackClick}>{'<'}</span> : null}
-				<div>{questionIndex}/12</div>
+				<div>{questionIndex}/15</div>
 				<span onClick={onNextClick}>{nextText}</span>
 			</div>
 		</div>

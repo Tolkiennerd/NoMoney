@@ -55,6 +55,7 @@ export function Frequency({defaultFrequency, expenseName, amount}: FrequencyProp
                 <div class="dropdown">
                     <div onClick={() => selectOption('year')}>year</div>
                     <div onClick={() => selectOption('month')}>month</div>
+                    <div onClick={() => selectOption('two weeks')}>two weeks</div>
                     <div onClick={() => selectOption('week')}>week</div>
                     <div onClick={() => selectOption('day')}>day</div>
                 </div>

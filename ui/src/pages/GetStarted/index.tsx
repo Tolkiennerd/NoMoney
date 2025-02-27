@@ -8,6 +8,7 @@ import { HowMuchQuestion } from './HowMuchQuestion';
 import { ExpenseQuestion } from './ExpenseQuestion';
 import { SalaryContext } from '../../contexts/Salary';
 import { TaxesQuestion } from './TaxesQuestion';
+import { DeductionQuestion } from './DeductionQuestion';
 
 export function GetStarted() {
 	const [questionIndex, setQuestionIndex] = useState(1);
@@ -93,19 +94,39 @@ export function GetStarted() {
 				<HowMuchQuestion 
 					id="technology"
 					back="insurance"
-					next="extra"
+					next="medical-expenses"
+					frequency="month"
+				></HowMuchQuestion>
+				<HowMuchQuestion 
+					id="medical-expenses"
+					back="technology"
+					next="charity"
 					frequency="month"
 				></HowMuchQuestion>
 				<ExpenseQuestion 
+					id="charity"
+					question="How much do you want to give to charity"
+					back="technology"
+					next="extra"
+					frequency="month"
+				></ExpenseQuestion>
+				<ExpenseQuestion 
 					id="extra"
 					question="How much do you want to have available for extra spending"
-					back="technology"
-					next="status"
+					back="charity"
+					next="retirement"
 					frequency="year"
 				></ExpenseQuestion>
+				<DeductionQuestion 
+					id="retirement"
+					question="How much do you contribute to a retirement account"
+					back="extra"
+					next="status"
+					frequency="two weeks"
+				></DeductionQuestion>
 				<TaxesQuestion 
 					id="status"
-					back="extra"
+					back="retirement"
 					next="state"
 				></TaxesQuestion>
 				<TaxesQuestion 
